@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/lblHello"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+
+
+        android:text="@string/login_lbl"
+        android:textAlignment="center"
+        android:textColor="@color/color_1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <EditText
+        android:id="@+id/login_inp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/login_hnt"
+
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        android:minHeight="48dp"
+        android:textColor="@color/color_1"
+        android:textColorLink="@color/color_1"
+        app:layout_constraintEnd_toEndOf="@+id/lblHello"
+        app:layout_constraintStart_toStartOf="@+id/lblHello"
+        app:layout_constraintTop_toBottomOf="@+id/lblHello"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/btnAuth"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/color_1"
+        android:text="@string/go_btn"
+        android:textColor="@color/color_2"
+        app:layout_constraintEnd_toEndOf="@+id/login_inp"
+        app:layout_constraintStart_toStartOf="@+id/login_inp"
+        app:layout_constraintTop_toBottomOf="@+id/login_inp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

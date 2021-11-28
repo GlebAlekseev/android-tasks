@@ -1,0 +1,8 @@
+
+c	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ß†ð
+7
+java:S1170"!Make this final field static too.(÷ß†ð
+r	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆƒ÷™ûÿÿÿÿ8çšö´Ö/
+k	java:S117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ˆ…˜ýÿÿÿÿ
+J
+java:S1604"(Make this anonymous inner class a lambda(ÕÀô½ùÿÿÿÿ8™¼œ·Ö/

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">P002_ResultAPI</string>
+    <string name="name_tv">Name</string>
+    <string name="edit_btn">Изменить</string>
+    <string name="save_btn">Сохранить</string>
+    <string name="name_inp">Имя</string>
+</resources>

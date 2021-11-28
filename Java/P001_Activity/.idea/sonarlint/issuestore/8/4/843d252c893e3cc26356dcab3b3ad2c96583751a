@@ -1,0 +1,22 @@
+
+c	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öêˆ†
+7
+java:S1170"!Make this final field static too.(öêˆ†
+
+java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ä„ón8“êì¶Ö/
+£
+java:S11863"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(™«‚İùÿÿÿÿ8‹µì¶Ö/
+8
+java:S1116+"Remove this empty statement.(ä„ón8‘µì¶Ö/
+>
+java:S11163"Remove this empty statement.(™«‚İùÿÿÿÿ8•êì¶Ö/
+R
+java:S1874="0Remove this use of "getColor"; it is deprecated.(’í—ğúÿÿÿÿ8ŒœŞ¶Ö/
+R
+java:S1874>"0Remove this use of "getColor"; it is deprecated.(š½©°úÿÿÿÿ8Œƒá¶Ö/
+R
+java:S1874A"0Remove this use of "getColor"; it is deprecated.(Ò¦ƒüÿÿÿÿ8œŞ¶Ö/
+R
+java:S1874B"0Remove this use of "getColor"; it is deprecated.(åË‚úÿÿÿÿ8ƒá¶Ö/
+E
+java:S1604"(Make this anonymous inner class a lambda(èÇï®8“œŞ¶Ö/

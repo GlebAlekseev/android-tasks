@@ -1,0 +1,8 @@
+<resources>
+<string name="app_name">P001_Activity</string>
+
+<string name="go_btn">Войти</string>
+<string name="login_lbl">Вход</string>
+<string name="login_hnt">Логин</string>
+<string name="exit_btn">Выйти</string>
+</resources>
