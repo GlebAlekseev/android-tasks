@@ -10,20 +10,24 @@ import android.util.Log;
 public class EditNameActivity extends AppCompatActivity {
 
     private final static String TAG = "EditNameActivity:";
+    public final static String CURRENT_NAME = "currentName";
+    private EditText nameInp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_name);
-
+        nameInp = (EditText)findViewById(R.id.name_inp);
         // Заполнение поля значением из порождающей активности
-        Intent intent_ = getIntent();
-        ((EditText)findViewById(R.id.name_inp)).setText(intent_.getStringExtra("currentName"));
+        String currentName = getIntent().getStringExtra(CURRENT_NAME);
+        if (currentName !=null){
+            nameInp.setText(currentName);
+        }
 
         // Обработчик события для клика
         findViewById(R.id.btnSaveName).setOnClickListener(view ->{
             Intent intent = new Intent();
-            intent.putExtra("name",((EditText)findViewById(R.id.name_inp)).getText().toString());
+            intent.putExtra(SettingsActivity.NAME,nameInp.getText().toString());
             // Установление возвращаемого интента для текущей активности, а также код завершения
             setResult(Activity.RESULT_OK,intent);
             // Завершение активности

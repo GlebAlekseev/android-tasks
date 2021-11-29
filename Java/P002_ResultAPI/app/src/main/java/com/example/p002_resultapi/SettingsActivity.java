@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +15,21 @@ import android.widget.TextView;
 public class SettingsActivity extends AppCompatActivity {
 
     private final static String TAG = "SettingsActivity:";
+    public final static String NAME = "name";
+    public final static String SNAME = "sName";
+    private TextView lblName;
 
     // Регистрация Callback для контракта StartActivityForResult - получение ссылки на объект-лаунчер
-    ActivityResultLauncher<Intent> iARL = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    ActivityResultLauncher<Intent> editNameActivityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK){
-                        String name =  result.getData().getStringExtra("name");
-                        ((TextView)findViewById(R.id.lblName)).setText(name);
+                        String name =  result.getData().getStringExtra(NAME);
+                        if (name !=null){
+                            lblName.setText(name);
+                        }
+
                     }
                 }
             });
@@ -32,27 +39,29 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        lblName= (TextView)findViewById(R.id.lblName);
 
         // Обработчик события по нажатию, для перехода на другую Activity
         findViewById(R.id.btnEditName).setOnClickListener(view ->{
             Intent intent = new Intent(this, EditNameActivity.class);
-            intent.putExtra("currentName",((TextView)findViewById(R.id.lblName)).getText().toString());
-            iARL.launch(intent);
+            intent.putExtra(EditNameActivity.CURRENT_NAME,lblName.getText().toString());
+            editNameActivityLauncher.launch(intent);
         });
         Log.d(TAG,"onCreate");
+
     }
 
     // Для сохранения значений при удалении Activity из памяти (нехватка памяти/смена ориентации экрана)
     @Override
-    protected void onSaveInstanceState(Bundle outState){
+    protected void onSaveInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
-        outState.putString("sName",((TextView)findViewById(R.id.lblName)).getText().toString());
+        outState.putString(SNAME,lblName.getText().toString());
         Log.d(TAG,"onSaveInstanceState");
     }
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        ((TextView)findViewById(R.id.lblName)).setText(savedInstanceState.getString("sName"));
+        lblName.setText(savedInstanceState.getString(SNAME));
         Log.d(TAG,"onRestoreInstanceState");
     }
     // Отслеживание жизненного цикла Активности
