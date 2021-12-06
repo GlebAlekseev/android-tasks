@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">homework.2</string>
+
+    <string name="name">Name</string>
+    <string name="button">Button</string>
+    <string name="textview">TextView</string>
+
+</resources>
