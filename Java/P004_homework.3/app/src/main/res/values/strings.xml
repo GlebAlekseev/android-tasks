@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">homework.3</string>
+
+
+    <string name="button_permissions">Permissions</string>
+
+
+    <string name="camera">Камера</string>
+    <string name="help">Помощь</string>
+
+    <string name="permission_access">Получено разрешение</string>
+    <string name="permission_denied">Разрешение не получено</string>
+    <string name="processing_received_data">Обработка возвращенных данных из активности</string>
+    <string name="camera_missing">Камера отсутствует</string>
+    <string name="camera_starting">Камера запускается</string>
+
+</resources>
+
