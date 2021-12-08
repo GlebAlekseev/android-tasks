@@ -42,34 +42,25 @@ public class MainFragment extends Fragment {
     private Button buttonPermissions;
     private Activity activity;
     private Context context;
-    private String STR_PERMISSION_ACCESS;
-    private  String STR_PERMISSION_DENIED ;
-    private  String STR_PROCESSING_RECEIVED_DATA ;
-
-    private  String STR_HELP ;
-    private  String STR_CAMERA;
-
-    private  String STR_CAMERA_MISSING;
-    private  String STR_CAMERA_STARTING;
-
-
+    private ActionMenuItemView actionMenuItemViewFirst;
+    private ActionMenuItemView actionMenuItemViewSecond;
 
     // Регистрация контракта RequestPermission
     private ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    Toast.makeText(context, STR_PERMISSION_ACCESS, Toast.LENGTH_SHORT).show();
+                    displayToast(R.string.permission_access);
                 } else {
-                    Toast.makeText(context, STR_PERMISSION_DENIED, Toast.LENGTH_SHORT).show();
+                    displayToast(R.string.permission_denied);
                 }
             });
     // Регистрация контракта StartActivityForResult
-    private ActivityResultLauncher<Intent> editNameActivityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    private ActivityResultLauncher<Intent> cameraActivityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK){
-                        Toast.makeText(context, STR_PROCESSING_RECEIVED_DATA, Toast.LENGTH_SHORT).show();
+                        displayToast(R.string.processing_received_data);
                     }
                 }
             });
@@ -82,16 +73,6 @@ public class MainFragment extends Fragment {
         setHasOptionsMenu(true);
         activity = getActivity();
         context = getContext();
-        STR_PERMISSION_ACCESS = getResources().getString(R.string.permission_access);
-        STR_PERMISSION_DENIED = getResources().getString(R.string.permission_denied);
-        STR_PROCESSING_RECEIVED_DATA = getResources().getString(R.string.processing_received_data);
-
-
-        STR_HELP = getResources().getString(R.string.help);
-        STR_CAMERA = getResources().getString(R.string.camera);
-
-        STR_CAMERA_MISSING = getResources().getString(R.string.camera_missing);
-        STR_CAMERA_STARTING = getResources().getString(R.string.camera_missing);
     }
 
     @Nullable
@@ -112,49 +93,44 @@ public class MainFragment extends Fragment {
             }
         });
     }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         // Добавляю пункты в Option Menu
-        //           ид группы,   ид пункта, порядок, текстовой представление
-        menu.add(   1,   ID_MENU_HELP,1,STR_HELP).setIcon(android.R.drawable.ic_menu_help)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menu.add(   1,   ID_MENU_CAMERA,2,STR_CAMERA).setIcon(android.R.drawable.ic_menu_camera)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        //           id группы,   id элемента , order  , title
+        menu.add(   1,   ID_MENU_HELP,1,getResources()
+                .getString(R.string.help))
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(   1,   ID_MENU_CAMERA,2,getResources()
+                .getString(R.string.camera))
+                .setIcon(android.R.drawable.ic_menu_camera)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Получение элементов меню
-        ActionMenuItemView actionMenuItemViewFirst  = activity.findViewById(ID_MENU_HELP);
-        ActionMenuItemView actionMenuItemViewSecond = activity.findViewById(ID_MENU_CAMERA);
-
-        // Создание popUp Menu
+        actionMenuItemViewFirst  = activity.findViewById(ID_MENU_HELP);
+        actionMenuItemViewSecond = activity.findViewById(ID_MENU_CAMERA);
         PopupMenu popup;
-        // Реализация события PopupMenu.OnMenuItemClickListener
         PopupMenu.OnMenuItemClickListener listener = new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case ID_MENU_POPUP_HELP:
-                        Toast.makeText(context, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        displayToast(item.getTitle());
                         return true;
                     case ID_MENU_POPUP_CAMERA:
-                        // Если устройство обладает камерой
-                        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-                            // Если разрешение уже получено
-                            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-                                // Запуск камеры
-                                Toast.makeText(context, STR_CAMERA_STARTING, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                editNameActivityLauncher.launch(intent);
+                        if (cameraIncluded()){
+                            if (permissionReceived()){
+                                displayToast(R.string.camera_starting);
+                                startCameraActivity();
                             }else{
                                 // Отправить запрос на получение разрешения
                                 requestPermissionLauncher.launch(Manifest.permission.CAMERA);
                             }
                         }else{
-                            Toast.makeText(context, STR_CAMERA_MISSING, Toast.LENGTH_SHORT).show();
+                            displayToast(R.string.camera_missing);
                         }
                         return true;
                     default:
@@ -178,5 +154,26 @@ public class MainFragment extends Fragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void startCameraActivity(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraActivityLauncher.launch(intent);
+    }
+
+    private boolean cameraIncluded(){
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+    }
+    private boolean permissionReceived(){
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void displayToast(int id){
+        Toast.makeText(context, getResources().getString(id), Toast.LENGTH_SHORT).show();
+    }
+    private void displayToast(String string){
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
+    }
+    private void displayToast(CharSequence string){
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
     }
 }
