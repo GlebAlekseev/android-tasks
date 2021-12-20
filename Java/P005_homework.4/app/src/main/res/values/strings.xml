@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">P005_homework.4</string>
+
+
+    <string-array name="human_fio">
+        <item>Соболев Пантелей Дамирович</item>
+        <item>Силин Матвей Онисимович</item>
+        <item>Лихачёв Вениамин Эдуардович</item>
+        <item>Потапов Терентий Эдуардович</item>
+        <item>Соловьёв Егор Викторович</item>
+        <item>Лукин Мечислав Гордеевич</item>
+        <item>Стрелков Ермак Тарасович</item>
+        <item>Орехов Василий Альбертович</item>
+        <item>Кузьмин Пантелеймон Дмитриевич</item>
+        <item>Баранов Эрнест Авдеевич</item>
+    </string-array>
+
+    <string-array name="human_email">
+        <item>treprifouss@yopmail.com</item>
+        <item>heugemip@yopmail.com</item>
+        <item>bududat@yopmail.com</item>
+        <item>nousacreil@yopmail.com</item>
+        <item>puwaujott@yopmail.com</item>
+        <item>caumaleud@yopmail.com</item>
+        <item>quellifro@yopmail.com</item>
+        <item>ceffolep@yopmail.com</item>
+        <item>xuddommon@yopmail.com</item>
+        <item>trotofrommi@yopmail.com</item>
+    </string-array>
+
+    <string-array name="human_birthday">
+        <item>11.05.1990</item>
+        <item>03.06.1991</item>
+        <item>29.08.1991</item>
+        <item>16.03.1993</item>
+        <item>05.05.1994</item>
+        <item>18.09.1997</item>
+        <item>22.12.1997</item>
+        <item>18.12.1998</item>
+        <item>01.04.1999</item>
+        <item>14.12.1999</item>
+    </string-array>
+
+    <string-array name="human_url">
+        <item>https://randompicturegenerator.com/img/cat-generator/g0d2808031377ed21c5fa2ff78c52c8d789a2d87e964c8a4aa3edc9c3ba0ca51ea12d595149313fbf31af99e29744a0f9_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g01782305a4fa8328276cb0d34a80ce95fdb7b950e09cd8cf2f9beee3bd83c752a1ca084b5f3a0cc70219dea10d39138e_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/ga66c1874a1157afff5e0f4929f258841d987b032cb591f5f1f99c33de7d556c8c1738e7d7741da933787e434de36fe56_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g5f16138bc7ed13b3a5489dabc7cad693da3c01ed576d027b6523db1d5c14fc1d77c41af2895d70ca84366e79dea8bf7b_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g1f53aa3c8a36ccb11124d36c23c73fdf8adedaa793cc4fb1a5ca6936c10940e30ffe042636433fa4d0c353496a050f12_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g5ebbf13c53894a4a1e4660b3b6cf588b0073bc1d697b1c8ca67aa6a0dc8713b888147076136ec0e1e1147955ca9e19ad_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g1111f27f4f7226fdb576e72dc276311d62c9a5eee738ff3bc992cdd5201b64750c5309b983dd93b94274587c8596efe7_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g532e9b86b3b6bcecc766b28dc66bf908e846ae47cf4b16f8376fdc19e26c4b994c4718dbef2756ee9a80dd9178a327d5_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g0f94542dc316be8269f644259b2c33352d35679ae6abdefb768f6dc1e5ca62034d4dab3a649ebf74bd6997fd4fa16fa4_640.jpg</item>
+        <item>https://randompicturegenerator.com/img/cat-generator/g0639623b39368934cdbea1dc93f42bbf5c013c40dc06426c67fa2dd6f71e3066bc0d2a31043becf7fd8b17a9c458083e_640.jpg</item>
+    </string-array>
+
+
+</resources>

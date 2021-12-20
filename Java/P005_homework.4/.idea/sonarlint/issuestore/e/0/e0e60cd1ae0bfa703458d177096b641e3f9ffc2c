@@ -1,0 +1,16 @@
+
+b
+java:S1124
+"EReorder the modifiers to comply with the Java Language Specification.(æ¥†8ÁÂ°ÄÝ/
+`
+java:S32521">Use static access with "android.app.Activity" for "RESULT_OK".(ñÃ¥ãúÿÿÿÿ8óÂ°ÄÝ/
+J
+java:S1604-"(Make this anonymous inner class a lambda(¡£¤åþÿÿÿÿ8ôÂ°ÄÝ/
+w
+java:S1104"UMake imageView a static final constant or non-public and provide accessors if needed.(Ž…Çªúÿÿÿÿ8ôÂ°ÄÝ/
+m
+java:S1104"WMake fioTextView a static final constant or non-public and provide accessors if needed.(ÔÓ˜ô
+t
+java:S1104"YMake emailTextView a static final constant or non-public and provide accessors if needed.(•Ö…Ìýÿÿÿÿ
+w
+java:S1104"\Make birthdayTextView a static final constant or non-public and provide accessors if needed.(˜åÚðÿÿÿÿÿ
