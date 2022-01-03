@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity"
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/fragment_up_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:name="com.example.p006_homework5.fragments.UpBarFragment"
+        />
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <fragment
+        android:id="@+id/fragment_up_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.p006_homework5.fragments.UpBlockFragment"
+        />
+</ScrollView>
+    <fragment
+        android:id="@+id/fragment_down_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.p006_homework5.fragments.DownBlockFragment"
+        />
+
+
+
+
+</LinearLayout>
