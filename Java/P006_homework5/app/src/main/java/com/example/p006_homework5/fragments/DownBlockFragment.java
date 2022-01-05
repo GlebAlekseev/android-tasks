@@ -1,45 +1,29 @@
 package com.example.p006_homework5.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.p006_homework5.listeners.RefreshDataViewListener;
 import com.example.p006_homework5.room_db.Human;
 import com.example.p006_homework5.recycler_view.HumanAdapter;
 import com.example.p006_homework5.R;
-import com.example.p006_homework5.activities.DetailActivity;
 import com.example.p006_homework5.room_db.App;
 
 import java.util.List;
-import com.example.p006_homework5.room_db.AppDataBase;
-import com.example.p006_homework5.room_db.HumanDao;
 
 
-public class DownBlockFragment extends Fragment implements HumanAdapter.OnItemClickListener {
+public class DownBlockFragment extends Fragment implements RefreshDataViewListener {
     public HumanAdapter humanAdapter;
     RecyclerView recyclerView;
-    // Контракт Result Api
-    public ActivityResultLauncher<Intent> detailsActivityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                }
-            });
 
     @Nullable
     @Override
@@ -53,10 +37,10 @@ public class DownBlockFragment extends Fragment implements HumanAdapter.OnItemCl
         // Работа с RecyclerView
         recyclerView = view.findViewById(R.id.recyclerview_list);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        humanAdapter = new HumanAdapter(this,getHumans());
+        humanAdapter = new HumanAdapter(getHumans());
         recyclerView.setAdapter(humanAdapter);
         // Обновление интерфейса
-        humanAdapter.RefreshCount();
+        refreshCount();
     }
 
     // Возвращает список Human объектов полученных из БД
@@ -64,13 +48,20 @@ public class DownBlockFragment extends Fragment implements HumanAdapter.OnItemCl
         return App.getInstance().getAppDataBase().humanDao().getAll();
     }
 
-
-    // Реализация интерфейса HumanAdapter.OnItemClickListener
-    // Интерфейс, реализованный в классе унаследованном от ComponentActivity, помогает получить доступ к методу класса ComponentActivity, registerForActivityResult
     @Override
-    public void OnItemClick(Human human) {
-        Intent intent = new Intent(getContext(), DetailActivity.class);
-        intent.putExtra(DetailActivity.CURRENT_EMAIl,human.email);
-        detailsActivityLauncher.launch(intent);
+    public void refresh() {
+        // Изменить данные в адаптере RecyclerView
+        humanAdapter.refreshListData();
+        // Сообщить об изменении в адаптере
+        humanAdapter.notifyDataSetChanged();
+        // Обновить кол-во элементов
+        refreshCount();
+    }
+
+    @Override
+    public void refreshCount() {
+        UpBarFragment upBarFragment = (UpBarFragment)getParentFragmentManager().findFragmentById(R.id.fragment_up_bar);
+        TextView textView = upBarFragment.getView().findViewById(R.id.tv_count);
+        textView.setText(App.getInstance().getResources().getString(R.string.contacts) + String.valueOf(App.getInstance().getAppDataBase().humanDao().getAll().size()));
     }
 }

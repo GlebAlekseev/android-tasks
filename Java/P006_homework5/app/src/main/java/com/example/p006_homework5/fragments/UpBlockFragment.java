@@ -71,7 +71,7 @@ public class UpBlockFragment  extends Fragment {
                 App.getInstance().getAppDataBase().humanDao().insert(human);
                 // Обновление интерфейса
                 DownBlockFragment downBlockFragment = (DownBlockFragment)getParentFragmentManager().findFragmentById(R.id.fragment_down_block);
-                downBlockFragment.humanAdapter.Refresh();
+                downBlockFragment.refresh();
             }
         });
 
@@ -109,11 +109,11 @@ public class UpBlockFragment  extends Fragment {
             // Подсветить поле ввода на оранжевый
             email.setTextColor(getResources().getColor(R.color.design_default_color_error));
             btnLoadInfo.setVisibility(View.VISIBLE);
-            btnSave.setText("Сохранить");
+            btnSave.setText(getResources().getString(R.string.save));
         }else  {
             email.setTextColor(getResources().getColor(R.color.black));
             btnLoadInfo.setVisibility(View.INVISIBLE);
-            btnSave.setText("Добавить");
+            btnSave.setText(getResources().getString(R.string.add));
         }
     }
 

@@ -19,40 +19,7 @@ public class App extends Application {
     public void onCreate(){
         super.onCreate();
         instance = this;
-        // Колбек для заполнения начальными данными в БД
-        RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
-            @Override
-            public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                super.onCreate(db);
-                // Инициализация стандартными данными
-                String[] humans_birtday = getResources().getStringArray(R.array.human_birthday);
-                String[] humans_email = getResources().getStringArray(R.array.human_email);
-                String[] humans_fio = getResources().getStringArray(R.array.human_fio);
-
-                String[] humans_name = new String[humans_fio.length];
-                String[] humans_last_name = new String[humans_fio.length];
-                String[] humans_last_last_name = new String[humans_fio.length];
-                int k = 0;
-                for (String fio:humans_fio) {
-                    String[] strFIO = fio.split(" ");
-                    humans_last_name[k] = strFIO[0];
-                    humans_name[k] = strFIO[1];
-                    humans_last_last_name[k] = strFIO[2];
-                    k++;
-                }
-
-                String[] humans_url = getResources().getStringArray(R.array.human_url);
-                for (int i=0;i<humans_fio.length; i++){
-                    db.execSQL("INSERT INTO human (name,last_name,last_last_name,email,birthday,url_image) VALUES(\""+humans_name[i]+"\",\""
-                                                                                                                     +humans_last_name[i]+"\",\""
-                                                                                                                     +humans_last_last_name[i]+"\",\""
-                                                                                                                     +humans_email[i]+"\",\""
-                                                                                                                     +humans_birtday[i]+"\",\""
-                                                                                                                     +humans_url[i]+"\");");
-                }
-            }
-        };
-        roomDataBase = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,DATA_BASE_NAME).allowMainThreadQueries().addCallback(rdc).build();
+        roomDataBase = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,DATA_BASE_NAME).allowMainThreadQueries().addCallback(AppDataBase.rdc).build();
     }
 }
 

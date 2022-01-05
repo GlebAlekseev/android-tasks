@@ -8,8 +8,16 @@
     <string name="back">Назад</string>
     <string name="clear">Очистить</string>
     <string name="add">Добавить</string>
+    <string name="save">Сохранить</string>
     <string name="load">Подгрузить</string>
     <string name="display">Отобразить</string>
+
+    <string name="remove">Удалить</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirmation">Вы точно хотите удалить данного пользователя?</string>
+    <string name="edit">Редактировать</string>
+
+    <string name="contacts">Контактов: </string>
 
     <string name="last_name">Фамилия</string>
     <string name="name">Имя</string>
@@ -18,6 +26,10 @@
     <string name="image_url">Ссылка на картинку</string>
     <string name="email">Почта</string>
     <string name="birthday">День рождения</string>
+
+
+
+    <string name="not_found">Not Found User with email: </string>
 
 
 

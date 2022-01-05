@@ -2,53 +2,47 @@ package com.example.p006_homework5.recycler_view;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
+
 import com.example.p006_homework5.R;
+import com.example.p006_homework5.listeners.RefreshDataListListener;
+import com.example.p006_homework5.activities.DetailActivity;
 import com.example.p006_homework5.activities.MainActivity;
 import com.example.p006_homework5.fragments.DownBlockFragment;
-import com.example.p006_homework5.fragments.UpBarFragment;
 import com.example.p006_homework5.fragments.UpBlockFragment;
 import com.example.p006_homework5.helpers.HelperMethods;
 import com.example.p006_homework5.room_db.App;
 import com.example.p006_homework5.room_db.Human;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> implements MainActivity.RefreshDataViewListener {
-    private OnItemClickListener onItemClickListener;
+public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> implements RefreshDataListListener {
     private List<Human> listHuman;
-    private Fragment fragment;
     // Инициализация данных
-    public HumanAdapter(Fragment fragment,List<Human> listHuman){
+    public HumanAdapter(List<Human> listHuman){
         this.listHuman = listHuman;
-        this.fragment = fragment;
     }
 
     // Возвращает элемент представления
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        onItemClickListener = (DownBlockFragment)fragment;
+       /* onItemClickListener = (DownBlockFragment)fragment;*/
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item,parent,false);
         return new ViewHolder(view);
@@ -66,29 +60,23 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
         }
     }
 
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+    }
+
     // Количество элементов
     @Override
     public int getItemCount() {
         return listHuman.size();
     }
 
-    // Реализация методов интерфейса MainActivity.RefreshDataViewListener
     @Override
-    public void Refresh() {
-        // Изменить данные в адаптере RecyclerView
+    public void refreshListData() {
         listHuman = App.getInstance().getAppDataBase().humanDao().getAll();
-        // Сообщить об изменении в адаптере
-        notifyDataSetChanged();
-        // Обновить кол-во элементов
-        RefreshCount();
     }
-    // Обновляет инетрфейс
-    @Override
-    public void RefreshCount() {
-        UpBarFragment upBarFragment = (UpBarFragment)fragment.getParentFragmentManager().findFragmentById(R.id.fragment_up_bar);
-        TextView textView = upBarFragment.getView().findViewById(R.id.tv_count);
-        textView.setText("Контактов: " + String.valueOf(App.getInstance().getAppDataBase().humanDao().getAll().size()));
-    }
+
 
     // Класс, который представляет элемент представления
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -102,6 +90,8 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initViews(itemView);
+
+
 
             // Событие долгого клика по нажатию на элемент RecyclerView
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -119,37 +109,41 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
                         private ImageView image;
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            FragmentManager fragmentManager =((MainActivity)itemView.getContext()).getSupportFragmentManager();
                             switch  (item.getItemId()) {
                                 case POPUPMENU_EDIT:
-                                    UpBlockFragment upBlockFragment = (UpBlockFragment)fragment.getParentFragmentManager().findFragmentById(R.id.fragment_up_block);
+                                    UpBlockFragment upBlockFragment = (UpBlockFragment)fragmentManager.findFragmentById(R.id.fragment_up_block);
                                     View upBlockView = upBlockFragment.getView();
                                     initViews(upBlockView);
                                     Human human = listHuman.get(getLayoutPosition());
                                     // Установить данные в поля ввода
                                     HelperMethods.setDataToViews(human,v.getContext(),name,lastName,lastLastName,email,birthday,urlImage,image);
-                                    HelperMethods.displayUpBlock(fragment);
+                                    HelperMethods.displayUpBlock(fragmentManager);
+
                                     break;
                                 case POPUPMENU_DELETE:
                                     // Отобразить Диалоговое окно
-                                    AlertDialog dialog = getAlertDialogBuilder().create();
+                                    AlertDialog dialog = getAlertDialogBuilder(fragmentManager).create();
                                     dialog.show();
                                     break;
                             }
                             return true;
                         }
 
-                        private AlertDialog.Builder getAlertDialogBuilder(){
-                            AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
-                            builder.setMessage("Вы точно хотите удалить данного пользователя?");
+                        private AlertDialog.Builder getAlertDialogBuilder(FragmentManager fragmentManager){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                            builder.setMessage(itemView.getResources().getString(R.string.confirmation));
                             builder.setCancelable(true);
-                            builder.setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
+                            builder.setPositiveButton(itemView.getResources().getString(R.string.remove), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     App.getInstance().getAppDataBase().humanDao().delete(emailTextView.getText().toString());
-                                    Refresh();
+
+                                    DownBlockFragment downBlockFragment = (DownBlockFragment) fragmentManager.findFragmentById(R.id.fragment_down_block);
+                                    downBlockFragment.refresh();
                                 }
                             });
-                            builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                            builder.setNegativeButton(itemView.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                 }
@@ -167,8 +161,8 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
                         }
                     };
                     // Наполнение попап-меню
-                    popupMenu.getMenu().add(1,POPUPMENU_EDIT,1,"Редактировать");
-                    popupMenu.getMenu().add(1,POPUPMENU_DELETE,1,"Удалить");
+                    popupMenu.getMenu().add(1,POPUPMENU_EDIT,1,itemView.getResources().getString(R.string.edit));
+                    popupMenu.getMenu().add(1,POPUPMENU_DELETE,2,itemView.getResources().getString(R.string.remove));
                     popupMenu.setOnMenuItemClickListener(listener);
                     popupMenu.show();
                     return false;
@@ -180,10 +174,11 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (onItemClickListener != null){
-                        onItemClickListener.OnItemClick(listHuman.get(getLayoutPosition()));
-                    }
-
+                    Human human = listHuman.get(getLayoutPosition());
+                    Context context =  itemView.getContext();
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra(DetailActivity.CURRENT_EMAIl,human.email);
+                    context.startActivity(intent);
                 }
             });
         }
@@ -196,11 +191,5 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
         }
 
     }
-
-    // Интерфейс OnItemClickListener
-    public interface OnItemClickListener{
-        void OnItemClick(Human human);
-    }
-
 
 }

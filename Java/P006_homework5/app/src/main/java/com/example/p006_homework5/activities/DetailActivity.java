@@ -40,14 +40,13 @@ public class DetailActivity extends AppCompatActivity {
 
             HelperMethods.loadImageFromLinkToView(getApplicationContext(),human.url_image,imageView, HelperMethods.SIZE_IMAGE.DEFAULT_900x900);
         }else{
-            Toast.makeText(getApplicationContext(), "Not Found User with email: "+email, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.not_found) +email, Toast.LENGTH_SHORT).show();
         }
 
         findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Завершение активности
-                setResult(DetailActivity.RESULT_OK);
                 finish();
             }
         });

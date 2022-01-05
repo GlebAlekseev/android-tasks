@@ -55,8 +55,7 @@ public class HelperMethods {
         // Добавляю в описание картинки, ссылку
         image.setContentDescription(urlImage);
     }
-    public static void displayUpBlock(Fragment fragment){
-        FragmentManager fragmentManager = fragment.getParentFragmentManager();
+    public static void displayUpBlock(FragmentManager fragmentManager){
         UpBlockFragment upBlockFragment = (UpBlockFragment)fragmentManager.findFragmentById(R.id.fragment_up_block);
         UpBarFragment upBarFragment = (UpBarFragment)fragmentManager.findFragmentById(R.id.fragment_up_bar);
         Button btnNewContact = upBarFragment.getView().findViewById(R.id.btn_new_contact);
