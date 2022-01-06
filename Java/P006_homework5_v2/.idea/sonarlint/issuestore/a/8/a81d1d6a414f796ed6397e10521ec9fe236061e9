@@ -1,0 +1,14 @@
+
+h
+java:S1192'"FDefine a constant instead of duplicating this literal "\",\"" 5 times.(Èú‹­ÿÿÿÿÿ8ãš§æâ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÝÛ«¦ÿÿÿÿÿ8ãš§æâ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÔÓ·ûÿÿÿÿ8ãš§æâ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹‹ ²ýÿÿÿÿ8ãš§æâ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾àæóûÿÿÿÿ8ãš§æâ/
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÿëª8ãš§æâ/
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÄ—™8ãš§æâ/
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à¶¿Šûÿÿÿÿ8ãš§æâ/
+q
+java:S1104"OMake rdc a static final constant or non-public and provide accessors if needed.(þçÞ¹ûÿÿÿÿ8ãš§æâ/
+K
+java:S1444")Make this "public static rdc" field final(þçÞ¹ûÿÿÿÿ8ãš§æâ/
