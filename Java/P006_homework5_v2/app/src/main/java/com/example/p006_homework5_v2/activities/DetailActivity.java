@@ -54,7 +54,6 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnClearAdd;
 
 
-    AlertDialog dialog;
     public enum STATE{
         VIEW,
         ADD,
@@ -87,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
             // Удаление элемента
             String emailString = emailAdd.getText().toString();
             if (state == VIEW) emailString = emailView.getText().toString();
-            dialog = HelperMethods.getAlertDialogBuilder(v.getContext(),emailString).create();
+            AlertDialog dialog = HelperMethods.getAlertDialogBuilder(v.getContext(),emailString).create();
             dialog.show();
         }
     };
