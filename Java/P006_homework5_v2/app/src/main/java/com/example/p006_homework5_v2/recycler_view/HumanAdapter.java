@@ -72,8 +72,6 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
         public TextView fioTextView;
         public TextView emailTextView;
         public TextView birthdayTextView;
-        public static final int POPUPMENU_EDIT = 1;
-        public static final int POPUPMENU_DELETE = 2;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initViews(itemView);
@@ -81,38 +79,8 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    // Создание попап-меню
-                    PopupMenu popupMenu =new PopupMenu(v.getContext(),v);
-                    PopupMenu.OnMenuItemClickListener listener = new PopupMenu.OnMenuItemClickListener() {
-                        private EditText lastLastName;
-                        private EditText lastName;
-                        private EditText name;
-                        private EditText email;
-                        private EditText birthday;
-                        private EditText urlImage;
-                        private ImageView image;
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch  (item.getItemId()) {
-                                case POPUPMENU_EDIT:
-                                    Context context = imageView.getContext();
-                                    // Запуск DetailActivity
-                                    HelperMethods.startActivityWithData(context, listHuman.get(getLayoutPosition()), DetailActivity.STATE.EDIT);
-                                    break;
-                                case POPUPMENU_DELETE:
-                                    // Диалоговое окно, удаление элемента
-                                    AlertDialog dialog = HelperMethods.getAlertDialogBuilder(itemView.getContext(),emailTextView.getText().toString()).create();
-                                    dialog.show();
-                                    break;
-                            }
-                            return true;
-                        }
-                    };
-                    // Наполнение попап-меню
-                    popupMenu.getMenu().add(1,POPUPMENU_EDIT,1,itemView.getResources().getString(R.string.edit));
-                    popupMenu.getMenu().add(1,POPUPMENU_DELETE,2,itemView.getResources().getString(R.string.remove));
-                    popupMenu.setOnMenuItemClickListener(listener);
-                    popupMenu.show();
+                    MainActivity mainActivity = (MainActivity) itemView.getContext();
+                    mainActivity.showPopupMenu(v,listHuman.get(getLayoutPosition()));
                     return false;
                 }
             });

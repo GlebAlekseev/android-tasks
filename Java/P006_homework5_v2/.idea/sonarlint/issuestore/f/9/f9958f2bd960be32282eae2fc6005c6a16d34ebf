@@ -1,0 +1,40 @@
+
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ó…Œ—
+q
+java:S1450 "VRemove the "btnBack" field and declare it as a local variable in the relevant methods.(•Öùªÿÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ó…Œ—
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ä¢ªä
+E
+java:S1874"0Remove this use of "getColor"; it is deprecated.(ä¸Ÿ+
+L
+java:S1874ƒ"0Remove this use of "getColor"; it is deprecated.(ªÆÒæıÿÿÿÿ
+˜
+java:S1186Ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±
+˜
+java:S1186á"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±¾ê
+Y
+java:S1126Ş"BReplace this if-then-else statement by a single method invocation.(è÷Äí
+Y
+java:S1117ù"=Rename "emailView" which hides the field declared at line 41.(Çé°»ÿÿÿÿÿ
+F
+java:S1068 "+Remove this unused "btnBack" private field.(•Öùªÿÿÿÿÿ
+C
+java:S1604?"(Make this anonymous inner class a lambda(ŠÎŒˆıÿÿÿÿ
+C
+java:S1604F"(Make this anonymous inner class a lambda(¨¹ñîúÿÿÿÿ
+>
+java:S1604M"(Make this anonymous inner class a lambda(¶âÀ³
+C
+java:S1604T"(Make this anonymous inner class a lambda(¯ÉÃÑûÿÿÿÿ
+D
+java:S1604Ä"(Make this anonymous inner class a lambda(ü•ûøşÿÿÿÿ
+D
+java:S1604Ê"(Make this anonymous inner class a lambda(Ê¢ñÕúÿÿÿÿ
+?
+java:S1604Ğ"(Make this anonymous inner class a lambda(‘Õ„è
+D
+java:S1604ä"(Make this anonymous inner class a lambda(ŞÌüüÿÿÿÿ
+@
+java:S5411~"*Use the primitive boolean expression here.(ÂÈ²å

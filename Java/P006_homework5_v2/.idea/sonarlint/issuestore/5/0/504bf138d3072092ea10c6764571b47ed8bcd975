@@ -1,0 +1,29 @@
+
+P	java:S125"<This block of commented-out lines of code should be removed.(«¸1
+n	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¹ùx
+o	java:S115 "ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(–ÏÀÃ
+o	java:S115!"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÂÖ…Ù
+]	java:S125E"<This block of commented-out lines of code should be removed.(£Ï¼ûÿÿÿÿÿ8è¾ê¶ã/
+2
+java:S1116V"Remove this empty statement.(´¢¶Ù
+—
+java:S1186l"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦Œœ¢
+Q	java:S107M"<Method has 9 parameters, which is greater than 7 authorized.(‚×‘ö
+C
+java:S1604\"(Make this anonymous inner class a lambda(›Ìô¹ùÿÿÿÿ
+C
+java:S1604j"(Make this anonymous inner class a lambda(Ÿ äÿøÿÿÿÿ
+P	java:S125"<This block of commented-out lines of code should be removed.(«¸1
+n	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¹ùx
+o	java:S115 "ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(–ÏÀÃ
+o	java:S115!"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÂÖ…Ù
+V	java:S125E"<This block of commented-out lines of code should be removed.(£Ï¼ûÿÿÿÿÿ
+2
+java:S1116V"Remove this empty statement.(´¢¶Ù
+—
+java:S1186l"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦Œœ¢
+Q	java:S107M"<Method has 9 parameters, which is greater than 7 authorized.(‚×‘ö
+C
+java:S1604\"(Make this anonymous inner class a lambda(›Ìô¹ùÿÿÿÿ
+C
+java:S1604j"(Make this anonymous inner class a lambda(Ÿ äÿøÿÿÿÿ

@@ -1,0 +1,16 @@
+
+n	java:S116"TRename this field "last_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÜ§ÿûÿÿÿÿ
+s	java:S116"YRename this field "last_last_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èîÔ‰ýÿÿÿÿ
+i	java:S116"TRename this field "url_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ…è÷
+p
+java:S1104"UMake last_name a static final constant or non-public and provide accessors if needed.(àÜ§ÿûÿÿÿÿ
+f
+java:S1104"PMake name a static final constant or non-public and provide accessors if needed.( þÍ¾
+u
+java:S1104"ZMake last_last_name a static final constant or non-public and provide accessors if needed.(èîÔ‰ýÿÿÿÿ
+l
+java:S1104"QMake email a static final constant or non-public and provide accessors if needed.(¾Æ†Ëýÿÿÿÿ
+o
+java:S1104"TMake birthday a static final constant or non-public and provide accessors if needed.(Óä£îùÿÿÿÿ
+k
+java:S1104"UMake url_image a static final constant or non-public and provide accessors if needed.(æ…è÷
