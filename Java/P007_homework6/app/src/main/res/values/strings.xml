@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Retrofit</string>
+
+    <string name="celsius">С°</string>
+    <string name="metres_per_second">м/c</string>
+    <string name="percent">%</string>
+
+    <string name="name">Город: </string>
+    <string name="now_temperature">Текущая температура: </string>
+    <string name="weather_conditions">Погодные условия: </string>
+    <string name="wind_speed">Скорость ветра: </string>
+    <string name="humidity">Влажность: </string>
+    <string name="sunrise_time">Время восхода: </string>
+    <string name="sunset_time">Время заката: </string>
+
+    <string name="request_history">История запросов</string>
+    <string name="request">Запросить</string>
+    <string name="back">Назад</string>
+
+    <string name="error_prefix">Ошибка: </string>
+
+    <string name="unknown">Неизвестно</string>
+    <string name="time_pattern_HHmmss">HH:mm:ss</string>
+
+
+    <string name="default_name">Город: Москва</string>
+    <string name="default_temperature">Текущая температура: 0 С°</string>
+    <string name="default_weather_conditions">Погодные условия: Пасмурно</string>
+    <string name="default_wind_speed">Скорость ветра: 0 м/c</string>
+    <string name="default_humidity">Влажнотсь: 70%</string>
+    <string name="default_sunrise_time">Время восхода: 06:00</string>
+    <string name="default_sunset_time">Время заката: 19:00</string>
+
+</resources>

@@ -1,0 +1,6 @@
+
+N
+java:S1128"1Remove this unused import 'androidx.room.Delete'.(±ˆçª8¹¶Û¬æ/
+S
+java:S1128"1Remove this unused import 'androidx.room.Update'.(€ÂÄ„ÿÿÿÿÿ8¹¶Û¬æ/
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çš‹ýúÿÿÿÿ

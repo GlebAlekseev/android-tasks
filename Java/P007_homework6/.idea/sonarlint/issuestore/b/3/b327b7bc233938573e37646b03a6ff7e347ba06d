@@ -1,0 +1,20 @@
+
+x	java:S116"WRename this field "time_created" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô“”ıÿÿÿÿ8‡¨É¨æ/
+m
+java:S1104"PMake name a static final constant or non-public and provide accessors if needed.( şÍ¾8úµÂ¢æ/
+p
+java:S1104"SMake sunrise a static final constant or non-public and provide accessors if needed.(¡šŞ8€Úğ£æ/
+t
+java:S1104"RMake sunset a static final constant or non-public and provide accessors if needed.(ñ¢¬şÿÿÿÿÿ8€Úğ£æ/
+w
+java:S1104"UMake windSpeed a static final constant or non-public and provide accessors if needed.(üåØÁüÿÿÿÿ8îãÇ¢æ/
+v
+java:S1104"TMake humidity a static final constant or non-public and provide accessors if needed.(óøãèùÿÿÿÿ8«ÔÈ¢æ/
+y
+java:S1104"WMake temperature a static final constant or non-public and provide accessors if needed.(êÚâªüÿÿÿÿ8¢Ê¢æ/
+y
+java:S1104"WMake description a static final constant or non-public and provide accessors if needed.(¹ÿ†ğÿÿÿÿÿ8Õÿ‘¨æ/
+z
+java:S1104"XMake time_created a static final constant or non-public and provide accessors if needed.(ô“”ıÿÿÿÿ8¨É¨æ/
+o
+java:S1104"RMake status a static final constant or non-public and provide accessors if needed.(­ùê‡8Û‰Å©æ/
