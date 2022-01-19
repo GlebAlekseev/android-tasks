@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.p007_homework6.R;
 import com.example.p007_homework6.helpers.HelperMethods;
+import com.example.p007_homework6.listeners.RefreshDataListListener;
+import com.example.p007_homework6.listeners.ShowCityNameListener;
 import com.example.p007_homework6.recycler_view.RequestAdapter;
 import com.example.p007_homework6.retrofit.Urls;
 import com.example.p007_homework6.retrofit.WeatherApi;
@@ -32,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ShowCityNameListener {
     private RecyclerView rvRequestList;
     private EditText etCityName;
     private Button btnRequest;
@@ -46,34 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String REQUEST_SUNSET = "request_sunset";
     public static final String REQUEST_DESCRIPTION = "request_description";
 
-    public static final long CONNECT_TIMEOUT = 30;
-    public static final long READ_TIMEOUT = 60;
-    public static final long WRITE_TIMEOUT = 60;
-
     private long now_time;
-
-    // Возвращает объект Retrofit проинициализированный базовым url, клиентом и Gson конвертером
-    private Retrofit getRetrofit(){
-        OkHttpClient.Builder okHttClientBuilder = new OkHttpClient.Builder();
-        // Время ожидания TCP подключения
-        okHttClientBuilder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
-        // Максимально возможное время бездействия, после которого соединение разрывается
-        okHttClientBuilder.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
-        // Задержка для остальных новый подключений
-        okHttClientBuilder.writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS);
-        return new Retrofit.Builder()
-                // Базовая ссылка
-                .baseUrl(Urls.BASE_URL)
-                // Клиент, который отправляет HTTP запросы, идет вместе с retrofit
-                .client(okHttClientBuilder.build())
-                // преобразование ответы в Json
-                .addConverterFactory(GsonConverterFactory.create())
-                // получение экземпляра Retrofit
-                .build();
-    }
-    private WeatherApi getWeatherApi(){
-        return getRetrofit().create(WeatherApi.class);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
                     // Обновить время годности
                     App.getInstance().getAppDataBase().requestDao().updateTimeCreatedAtName(requestName,now_time);
                     // Обновление RecyclerView
-                    requestAdapter.refresh();
+                    requestAdapter.refresh(App.getInstance().getAppDataBase().requestDao().getAll());
                     // Запуск активити с данными
                     HelperMethods.startActivityWithRequestData(btnRequest.getContext(),DetailActivity.class,request);
                 }else{
                     // Кеш отсутствует или не актуален
                     // Отправка запроса
-                    Call<WeatherRoot> weatherCall = getWeatherApi().getWeather(requestName);
+                    Call<WeatherRoot> weatherCall = App.getInstance().weatherApi.getWeather(requestName);
                     weatherCall.enqueue(cb);
                 }
             }
@@ -140,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 HelperMethods.startActivityWithRequestData(btnRequest.getContext(),DetailActivity.class,request);
             }else{
                 // Неудачное получение данных
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_prefix) + response.message(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), String.format( "%s %s",getResources().getString(R.string.error_prefix),response.message()), Toast.LENGTH_SHORT).show();
                 request.name = etCityName.getText().toString();
                 insertRequest(request,response.isSuccessful());
             }
@@ -155,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             request.status = status;
             App.getInstance().getAppDataBase().requestDao().insert(request);
             // Обновление RecyclerView
-            requestAdapter.refresh();
+            requestAdapter.refresh(App.getInstance().getAppDataBase().requestDao().getAll());
         }
 
         private Request getRequestFromWeatherRoot(WeatherRoot weatherRoot){
@@ -177,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         rvRequestList.setAdapter(requestAdapter);
     }
 
-
-
+    @Override
+    public void showCityName(String cityName) {
+        etCityName.setText(cityName);
+    }
 }

@@ -59,8 +59,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     }
 
     @Override
-    public void refresh() {
-        requestList = App.getInstance().getAppDataBase().requestDao().getAll();
+    public void refresh(List<Request> requestList) {
+        this.requestList = requestList;
         notifyDataSetChanged();
     }
 
@@ -78,9 +78,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     MainActivity mainActivity = (MainActivity)v.getContext();
-                    EditText etCityName = mainActivity.findViewById(R.id.etCityName);
                     Request request = requestList.get(getLayoutPosition());
-                    etCityName.setText(request.name);
+                    mainActivity.showCityName(request.name);
                 }
             });
         }

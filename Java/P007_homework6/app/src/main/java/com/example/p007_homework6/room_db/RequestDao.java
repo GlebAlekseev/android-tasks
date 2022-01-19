@@ -23,6 +23,4 @@ public interface RequestDao {
 
     @Query("UPDATE request SET time_created = :time_created WHERE name = :name")
     void updateTimeCreatedAtName(String name,long time_created);
-
-
 }

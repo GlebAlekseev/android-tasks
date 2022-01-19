@@ -20,7 +20,7 @@ public class HelperMethods {
         context.startActivity(intent);
     }
 
-    public static Request getRequestDataFromOldActivity(Intent intent){
+    public static Request getRequestDataFromActivity(Intent intent){
         Request newRequest = new Request();
         newRequest.name = intent.getStringExtra(MainActivity.REQUEST_NAME);
         newRequest.description = intent.getStringExtra(MainActivity.REQUEST_DESCRIPTION);

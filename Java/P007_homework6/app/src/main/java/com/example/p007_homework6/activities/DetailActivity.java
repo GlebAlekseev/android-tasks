@@ -24,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Request request = HelperMethods.getRequestDataFromOldActivity(getIntent());
+        Request request = HelperMethods.getRequestDataFromActivity(getIntent());
         initViews();
         initListeners();
         bindDataViews(request);
@@ -48,12 +48,12 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
     private void bindDataViews(Request request){
-        tvName.setText(getResources().getString(R.string.name) + request.name);
-        tvTemperature.setText(getResources().getString(R.string.now_temperature) +  String.valueOf(request.temperature));
-        tvHumidity.setText(getResources().getString(R.string.humidity) + String.valueOf(request.humidity));
-        tvWindSpeed.setText(getResources().getString(R.string.wind_speed) + String.valueOf(request.windSpeed));
-        tvSunrise.setText(getResources().getString(R.string.sunrise_time) + String.valueOf(request.sunrise));
-        tvSunset.setText(getResources().getString(R.string.sunset_time) + String.valueOf(request.sunset));
-        tvDescription.setText(getResources().getString(R.string.weather_conditions) + request.description);
+        tvName.setText(String.format( "%s %s",getResources().getString(R.string.name),request.name));
+        tvTemperature.setText(String.format( "%s %s",getResources().getString(R.string.now_temperature),request.temperature));
+        tvHumidity.setText(String.format( "%s %s",getResources().getString(R.string.humidity),request.humidity));
+        tvWindSpeed.setText(String.format( "%s %s",getResources().getString(R.string.wind_speed),request.windSpeed));
+        tvSunrise.setText(String.format( "%s %s",getResources().getString(R.string.sunrise_time),request.sunrise));
+        tvSunset.setText(String.format( "%s %s",getResources().getString(R.string.sunset_time),request.sunset));
+        tvDescription.setText(String.format( "%s %s",getResources().getString(R.string.weather_conditions),request.description));
     }
 }
