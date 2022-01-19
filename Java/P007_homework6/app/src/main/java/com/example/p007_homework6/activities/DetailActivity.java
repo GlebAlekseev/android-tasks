@@ -48,12 +48,12 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
     private void bindDataViews(Request request){
-        tvName.setText(String.format( "%s %s",getResources().getString(R.string.name),request.name));
-        tvTemperature.setText(String.format( "%s %s",getResources().getString(R.string.now_temperature),request.temperature));
-        tvHumidity.setText(String.format( "%s %s",getResources().getString(R.string.humidity),request.humidity));
-        tvWindSpeed.setText(String.format( "%s %s",getResources().getString(R.string.wind_speed),request.windSpeed));
-        tvSunrise.setText(String.format( "%s %s",getResources().getString(R.string.sunrise_time),request.sunrise));
-        tvSunset.setText(String.format( "%s %s",getResources().getString(R.string.sunset_time),request.sunset));
-        tvDescription.setText(String.format( "%s %s",getResources().getString(R.string.weather_conditions),request.description));
+        tvName.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.name),request.name));
+        tvTemperature.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.now_temperature),request.temperature));
+        tvHumidity.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.humidity),request.humidity));
+        tvWindSpeed.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.wind_speed),request.windSpeed));
+        tvSunrise.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.sunrise_time),request.sunrise));
+        tvSunset.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.sunset_time),request.sunset));
+        tvDescription.setText(String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.weather_conditions),request.description));
     }
 }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.p007_homework6.R;
 import com.example.p007_homework6.activities.MainActivity;
 import com.example.p007_homework6.listeners.RefreshDataListListener;
+import com.example.p007_homework6.listeners.ShowCityNameListener;
 import com.example.p007_homework6.retrofit.gson_model.Main;
 import com.example.p007_homework6.room_db.App;
 import com.example.p007_homework6.room_db.Request;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHolder> implements RefreshDataListListener {
+    private ShowCityNameListener showCityNameListener;
     private List<Request> requestList;
 
     public RequestAdapter(List<Request> requestList){
@@ -63,7 +65,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         this.requestList = requestList;
         notifyDataSetChanged();
     }
-
+    public void registerShowCityNameListener(ShowCityNameListener showCityNameListener){
+        this.showCityNameListener = showCityNameListener;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvCityName;
         public TextView tvTimeCreated;
@@ -77,9 +81,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity mainActivity = (MainActivity)v.getContext();
                     Request request = requestList.get(getLayoutPosition());
-                    mainActivity.showCityName(request.name);
+                    showCityNameListener.showCityName(request.name);
                 }
             });
         }

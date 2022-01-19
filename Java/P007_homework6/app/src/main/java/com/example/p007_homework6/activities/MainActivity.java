@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements ShowCityNameListener {
     private RecyclerView rvRequestList;
-    private EditText etCityName;
+    public static EditText etCityName;
     private Button btnRequest;
     private RequestAdapter requestAdapter;
 
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements ShowCityNameListe
     public static final String REQUEST_DESCRIPTION = "request_description";
 
     private long now_time;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements ShowCityNameListe
                 HelperMethods.startActivityWithRequestData(btnRequest.getContext(),DetailActivity.class,request);
             }else{
                 // Неудачное получение данных
-                Toast.makeText(getApplicationContext(), String.format( "%s %s",getResources().getString(R.string.error_prefix),response.message()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), String.format( getResources().getString(R.string.info_string).toString(),getResources().getString(R.string.error_prefix),response.message()), Toast.LENGTH_SHORT).show();
                 request.name = etCityName.getText().toString();
                 insertRequest(request,response.isSuccessful());
             }
@@ -149,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements ShowCityNameListe
     private void initRecyclerView(){
         rvRequestList.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
         requestAdapter = new RequestAdapter(getRequests());
+        requestAdapter.registerShowCityNameListener(this);
         rvRequestList.setAdapter(requestAdapter);
     }
 

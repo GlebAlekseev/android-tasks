@@ -22,6 +22,8 @@
     <string name="unknown">Неизвестно</string>
     <string name="time_pattern_HHmmss">HH:mm:ss</string>
 
+    <string name="info_string">%s %s</string>
+
 
     <string name="default_name">Город: Москва</string>
     <string name="default_temperature">Текущая температура: 0 С°</string>
